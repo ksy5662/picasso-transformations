@@ -20,6 +20,7 @@ import jp.wasabeef.picasso.transformations.GrayscaleTransformation;
 import jp.wasabeef.picasso.transformations.MaskTransformation;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 import jp.wasabeef.picasso.transformations.gpu.BrightnessFilterTransformation;
+import jp.wasabeef.picasso.transformations.gpu.ChromaKeyBlendFilterTransformation;
 import jp.wasabeef.picasso.transformations.gpu.ContrastFilterTransformation;
 import jp.wasabeef.picasso.transformations.gpu.InvertFilterTransformation;
 import jp.wasabeef.picasso.transformations.gpu.KuwaharaFilterTransformation;
@@ -59,7 +60,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     Swirl,
     Brightness,
     Kuawahara,
-    Vignette
+    Vignette,
+      ChromaKeyBlend
   }
 
   public MainAdapter(Context context, List<Type> dataSet) {
@@ -213,6 +215,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 new float[] { 0.0f, 0.0f, 0.0f }, 0f, 0.75f))
             .into(holder.image);
         break;
+        case ChromaKeyBlend:
+        Picasso.with(mContext)
+                .load(R.drawable.check)
+                .transform(new ChromaKeyBlendFilterTransformation(mContext, 0.0f, 0.1f,
+                        new float[]{53.0f/255.0f, 193.0f/255.0f, 195.0f/255.0f}))
+                .into(holder.image);
+            break;
     }
     holder.title.setText(mDataSet.get(position).name());
   }

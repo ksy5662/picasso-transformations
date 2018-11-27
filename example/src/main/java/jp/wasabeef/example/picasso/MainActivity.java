@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     dataSet.add(Type.Brightness);
     dataSet.add(Type.Kuawahara);
     dataSet.add(Type.Vignette);
+    dataSet.add(Type.ChromaKeyBlend);
 
     recyclerView.setAdapter(new MainAdapter(this, dataSet));
   }
